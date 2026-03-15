@@ -57,7 +57,6 @@
     color: var(--gold);
   }
 
-  /* Language toggle */
   .lang-toggle {
     display: flex;
     align-items: center;
@@ -330,7 +329,7 @@
     <div class="names">
       Clément<span class="amp">&</span>Alaknanda's
     </div>
-    <p class="tagline" data-en=" wedding party at our home in Bordeaux!" data-fr="la fête de mariage chez nous à Bordeaux !">belated wedding party at our home in Bordeaux!</p>
+    <p class="tagline" data-en="wedding party at our home in Bordeaux!" data-fr="la fête de mariage chez nous à Bordeaux !">wedding party at our home in Bordeaux!</p>
 
     <div class="divider-florish">
       <div class="line"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="line"></div>
@@ -383,7 +382,7 @@
       <li class="prog-item">
         <span class="prog-time">8:30pm</span>
         <span class="prog-desc">
-          <strong data-en="Korean fried chicken burgers & fries" data-fr="Burgers de poulet frit coréen & frites">Korean fried chicken burgers & frites</strong>
+          <strong data-en="Korean fried chicken burgers & fries" data-fr="Burgers de poulet frit coréen & frites">Korean fried chicken burgers & fries</strong>
           <span data-en=" — a late-night feed to keep the party going 🍔" data-fr=" — un repas de fin de soirée pour continuer la fête 🍔"> — a late-night feed to keep the party going 🍔</span>
           <span class="note" data-en="Because every good party deserves a second wind" data-fr="Parce que toute bonne fête mérite un second souffle">Because every good party deserves a second wind</span>
         </span>
@@ -433,20 +432,16 @@
 
 <script>
   function setLang(lang) {
-    // Update button states
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
 
-    // Update all translatable elements
     document.querySelectorAll('[data-en]').forEach(el => {
       const val = el.getAttribute('data-' + lang);
       if (val !== null) {
-        // Use innerHTML to support embedded HTML (like <br>, <span>)
         el.innerHTML = val;
       }
     });
 
-    // Update html lang attribute
     document.documentElement.lang = lang;
   }
 </script>
