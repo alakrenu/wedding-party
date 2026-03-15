@@ -30,9 +30,7 @@
     overflow-x: hidden;
   }
 
-  .bg-decor {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0; 
-  }
+  .bg-decor { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .bg-decor svg { position: absolute; opacity: 0.07; }
   .leaf-1 { top: -60px; left: -40px; width: 320px; transform: rotate(-20deg); }
   .leaf-2 { bottom: -80px; right: -60px; width: 380px; transform: rotate(160deg); }
@@ -59,6 +57,36 @@
     color: var(--gold);
   }
 
+  /* Language toggle */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 20px;
+    padding: 3px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold);
+    background: transparent;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    opacity: 0.5;
+  }
+  .lang-btn.active {
+    background: var(--gold);
+    color: #fff;
+    opacity: 1;
+  }
+
   .hero {
     text-align: center;
     padding: 56px 32px;
@@ -76,11 +104,7 @@
     pointer-events: none;
   }
 
-  .corner {
-    position: absolute;
-    width: 48px; height: 48px;
-    opacity: 0.3;
-  }
+  .corner { position: absolute; width: 48px; height: 48px; opacity: 0.3; }
   .corner-tl { top: 12px; left: 12px; }
   .corner-tr { top: 12px; right: 12px; transform: scaleX(-1); }
   .corner-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
@@ -146,10 +170,7 @@
     box-shadow: 0 2px 12px rgba(44,36,22,0.04);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .info-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(44,36,22,0.08);
-  }
+  .info-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(44,36,22,0.08); }
   .info-icon { font-size: 24px; margin-bottom: 10px; display: block; }
   .info-label {
     font-size: 10px; font-weight: 500;
@@ -176,10 +197,7 @@
   }
   .section-title::after { content: ''; flex: 1; height: 1px; background: var(--terracotta); opacity: 0.2; }
 
-  .programme-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 12px;
-  }
+  .programme-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .prog-item {
     display: flex; align-items: flex-start; gap: 16px;
     padding: 16px 20px;
@@ -197,13 +215,7 @@
   }
   .prog-desc { font-size: 14px; line-height: 1.5; color: var(--mid); }
   .prog-desc strong { color: var(--dark); font-weight: 500; }
-  .prog-desc .note {
-    display: block;
-    font-size: 12px;
-    opacity: 0.7;
-    margin-top: 3px;
-    font-style: italic;
-  }
+  .prog-desc .note { display: block; font-size: 12px; opacity: 0.7; margin-top: 3px; font-style: italic; }
 
   .dresscode {
     background: linear-gradient(135deg, var(--green), #3a5431);
@@ -228,11 +240,7 @@
     box-shadow: 0 8px 32px rgba(200,96,58,0.3);
     animation: fadeUp 0.9s ease 0.4s both;
   }
-  .rsvp-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px; font-weight: 300;
-    color: #fff; margin-bottom: 8px;
-  }
+  .rsvp-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #fff; margin-bottom: 8px; }
   .rsvp-sub { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 28px; }
   .rsvp-deadline {
     display: inline-block;
@@ -306,89 +314,86 @@
     <div class="band-line"></div>
     <span class="band-label">Bordeaux · 22 August 2026</span>
     <div class="band-line"></div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+    </div>
   </div>
 
   <div class="hero">
-    <svg class="corner corner-tl" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2">
-      <path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/>
-    </svg>
-    <svg class="corner corner-tr" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2">
-      <path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/>
-    </svg>
-    <svg class="corner corner-bl" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2">
-      <path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/>
-    </svg>
-    <svg class="corner corner-br" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2">
-      <path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/>
-    </svg>
+    <svg class="corner corner-tl" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2"><path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/></svg>
+    <svg class="corner corner-tr" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2"><path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/></svg>
+    <svg class="corner corner-bl" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2"><path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/></svg>
+    <svg class="corner corner-br" viewBox="0 0 48 48" fill="none" stroke="var(--gold)" stroke-width="1.2"><path d="M4 44 L4 4 L44 4"/><path d="M4 20 Q14 14 20 4"/></svg>
 
-    <span class="announce">You are warmly invited to </span>
+    <span class="announce" data-en="You are warmly invited to" data-fr="Vous êtes chaleureusement invité(e) à">You are warmly invited to</span>
     <div class="names">
       Clément<span class="amp">&</span>Alaknanda's
     </div>
-    <p class="tagline">belated wedding party at our home in Bordeaux!</p>
+    <p class="tagline" data-en="belated wedding party at our home in Bordeaux!" data-fr="la fête de mariage chez nous à Bordeaux !">belated wedding party at our home in Bordeaux!</p>
 
     <div class="divider-florish">
-      <div class="line"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="line"></div>
+      <div class="line"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="line"></div>
     </div>
 
-    <p style="font-size:15px; color:var(--mid); line-height:1.7; max-width:420px; margin:0 auto;">
-      A summer evening in our garden — aperitivo at sunset, a long table of good food,
-      and dancing until late with headphones on. Come as you are, stay as long as you like.
+    <p style="font-size:15px; color:var(--mid); line-height:1.7; max-width:420px; margin:0 auto;"
+       data-en="A summer evening in our garden — aperitivo at sunset, a long table of good food, and dancing until late with headphones on. Come as you are, stay as long as you like."
+       data-fr="Une soirée d'été dans notre jardin — apéritif au coucher du soleil, un long repas convivial, et on danse jusqu'au bout avec des casques sur les oreilles. Venez comme vous êtes, restez aussi longtemps que vous voulez.">
+      A summer evening in our garden — aperitivo at sunset, a long table of good food, and dancing until late with headphones on. Come as you are, stay as long as you like.
     </p>
   </div>
 
   <div class="info-grid">
     <div class="info-card">
       <span class="info-icon">📅</span>
-      <span class="info-label">Date</span>
-      <span class="info-value">Saturday<br>22 August 2026</span>
+      <span class="info-label" data-en="Date" data-fr="Date">Date</span>
+      <span class="info-value" data-en="Saturday<br>22 August 2026" data-fr="Samedi<br>22 août 2026">Saturday<br>22 August 2026</span>
     </div>
     <div class="info-card">
       <span class="info-icon">📍</span>
-      <span class="info-label">Location</span>
+      <span class="info-label" data-en="Location" data-fr="Lieu">Location</span>
       <span class="info-value" style="font-size:15px;">22 rue de la Médoquine<br><span style="font-size:13px; opacity:0.7;">Talence, Bordeaux</span></span>
     </div>
     <div class="info-card">
       <span class="info-icon">🕕</span>
-      <span class="info-label">Time & Format</span>
-      <span class="info-value">From 6pm<br><span style="font-size:13px; opacity:0.75;">Garden Party · Silent Disco</span></span>
+      <span class="info-label" data-en="Time & Format" data-fr="Heure & Format">Time & Format</span>
+      <span class="info-value" data-en="From 6pm<br><span style='font-size:13px; opacity:0.75;'>Garden Party · Silent Disco</span>" data-fr="À partir de 18h<br><span style='font-size:13px; opacity:0.75;'>Fête au jardin · Silent Disco</span>">From 6pm<br><span style="font-size:13px; opacity:0.75;">Garden Party · Silent Disco</span></span>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">The evening</div>
+    <div class="section-title" data-en="The evening" data-fr="La soirée">The evening</div>
     <ul class="programme-list">
       <li class="prog-item">
         <span class="prog-time">6pm</span>
         <span class="prog-desc">
-          <strong>Arrival & aperitifs</strong> — drinks in the garden as the sun goes down
-          <span class="note">Our bartender will be mixing all evening — come thirsty</span>
+          <strong data-en="Arrival & aperitifs" data-fr="Arrivée & apéritifs">Arrival & aperitifs</strong>
+          <span data-en=" — drinks in the garden as the sun goes down" data-fr=" — verres dans le jardin au coucher du soleil"> — drinks in the garden as the sun goes down</span>
+          <span class="note" data-en="Our bartender will be mixing all evening — come thirsty" data-fr="Notre barman sera là toute la soirée — venez avec soif">Our bartender will be mixing all evening — come thirsty</span>
         </span>
       </li>
       <li class="prog-item">
         <span class="prog-time">7pm</span>
         <span class="prog-desc">
-          <strong>Apéro-style dinner</strong> — a spread of mezze, small plates, and sharing dishes
-          <span class="note">Grazing, gathering, no assigned seats — eat what you like, when you like</span>
+          <strong data-en="Apéro-style dinner" data-fr="Dîner façon apéro">Apéro-style dinner</strong>
+          <span data-en=" — a spread of mezze, small plates, and sharing dishes" data-fr=" — mezze, petites assiettes et plats à partager"> — a spread of mezze, small plates, and sharing dishes</span>
+          <span class="note" data-en="Grazing, gathering, no assigned seats — eat what you like, when you like" data-fr="Pas de places assignées — mangez ce que vous voulez, quand vous voulez">Grazing, gathering, no assigned seats — eat what you like, when you like</span>
         </span>
       </li>
       <li class="prog-item">
         <span class="prog-time">8:30pm</span>
         <span class="prog-desc">
-          <strong>Korean fried chicken burgers & fries</strong> — a late-night feed to keep the party going 🍔
-          <span class="note">Because every good party deserves a second wind</span>
+          <strong data-en="Korean fried chicken burgers & fries" data-fr="Burgers de poulet frit coréen & frites">Korean fried chicken burgers & frites</strong>
+          <span data-en=" — a late-night feed to keep the party going 🍔" data-fr=" — un repas de fin de soirée pour continuer la fête 🍔"> — a late-night feed to keep the party going 🍔</span>
+          <span class="note" data-en="Because every good party deserves a second wind" data-fr="Parce que toute bonne fête mérite un second souffle">Because every good party deserves a second wind</span>
         </span>
       </li>
       <li class="prog-item">
-        <span class="prog-time">From 9pm</span>
+        <span class="prog-time">9pm</span>
         <span class="prog-desc">
-          <strong>Silent Disco</strong> — headphones on, we dance until the very end 🎧
-          <span class="note"> · playlists specially curated by us · </span>
+          <strong data-en="Silent Disco" data-fr="Silent Disco">Silent Disco</strong>
+          <span data-en=" — headphones on, we dance until the very end 🎧" data-fr=" — casques sur les oreilles, on danse jusqu'au bout 🎧"> — headphones on, we dance until the very end 🎧</span>
+          <span class="note" data-en="· playlists specially curated by us ·" data-fr="· playlists soigneusement sélectionnées par nos soins ·">· playlists specially curated by us ·</span>
         </span>
       </li>
     </ul>
@@ -397,22 +402,17 @@
   <div class="dresscode">
     <div class="dresscode-icon">👗</div>
     <div class="dresscode-text">
-      <div class="dresscode-title">Dress code</div>
-      <div class="dresscode-value">Summer elegance</div>
-      <div class="dresscode-sub">Light, summery colours welcome · Bring comfortable dance shoes, avoid stilettos (lawn!)</div>
+      <div class="dresscode-title" data-en="Dress code" data-fr="Code vestimentaire">Dress code</div>
+      <div class="dresscode-value" data-en="Summer elegance" data-fr="Élégance estivale">Summer elegance</div>
+      <div class="dresscode-sub" data-en="Light, summery colours welcome · Bring comfortable dance shoes, avoid stilettos (lawn!)" data-fr="Couleurs légères et estivales bienvenues · Chaussures confortables pour danser, évitez les talons aiguilles (pelouse !)">Light, summery colours welcome · Bring comfortable dance shoes, avoid stilettos (lawn!)</div>
     </div>
   </div>
 
   <div class="rsvp-block">
-    <div class="rsvp-title">Let us know you're coming</div>
-    <p class="rsvp-sub">Takes two minutes — we just need a few details</p>
-    <div class="rsvp-deadline">📆 Please reply by 15 May 2026</div>
+    <div class="rsvp-title" data-en="Let us know you're coming" data-fr="Confirmez votre présence">Let us know you're coming</div>
+    <p class="rsvp-sub" data-en="Takes two minutes — we just need a few details" data-fr="Deux minutes suffisent — juste quelques informations">Takes two minutes — we just need a few details</p>
+    <div class="rsvp-deadline" data-en="📆 Please reply by 15 May 2026" data-fr="📆 Merci de répondre avant le 15 mai 2026">📆 Please reply by 15 May 2026</div>
     <br>
-    <!-- 
-      ★ REPLACE THE href BELOW with your Google Form link ★
-      e.g. href="https://forms.gle/yourformlink"
-      Your form should capture: Name, Email, Number of guests, Dietary restrictions
-    -->
     <a href="https://forms.gle/qTMSnJZA7jPKWGbg7" class="rsvp-btn" target="_blank">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -421,14 +421,35 @@
         <line x1="16" y1="17" x2="8" y2="17"/>
         <polyline points="10 9 9 9 8 9"/>
       </svg>
-      RSVP — fill in the form
+      <span data-en="RSVP — fill in the form" data-fr="RSVP — remplir le formulaire">RSVP — fill in the form</span>
     </a>
   </div>
 
-  <div class="footer">
+  <div class="footer" data-en="Clément & Alaknanda · Bordeaux · August 2026" data-fr="Clément & Alaknanda · Bordeaux · Août 2026">
     Clément & Alaknanda · Bordeaux · August 2026
   </div>
 
 </div>
+
+<script>
+  function setLang(lang) {
+    // Update button states
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+
+    // Update all translatable elements
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) {
+        // Use innerHTML to support embedded HTML (like <br>, <span>)
+        el.innerHTML = val;
+      }
+    });
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+  }
+</script>
+
 </body>
 </html>
