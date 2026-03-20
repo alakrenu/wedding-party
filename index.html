@@ -46,7 +46,7 @@
 
   .header-band {
     display: flex; align-items: center; gap: 16px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     animation: fadeDown 0.8s ease both;
   }
   .band-line { flex: 1; height: 1px; background: var(--gold); opacity: 0.5; }
@@ -57,33 +57,52 @@
     color: var(--gold);
   }
 
+  /* Language toggle — centered, prominent */
+  .lang-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    animation: fadeDown 0.8s ease 0.1s both;
+  }
   .lang-toggle {
     display: flex;
     align-items: center;
-    background: rgba(201,168,76,0.12);
-    border: 1px solid rgba(201,168,76,0.35);
-    border-radius: 20px;
-    padding: 3px;
-    gap: 2px;
-    flex-shrink: 0;
+    background: #fff;
+    border: 1.5px solid rgba(44,36,22,0.1);
+    border-radius: 40px;
+    padding: 4px;
+    gap: 0;
+    box-shadow: 0 2px 16px rgba(44,36,22,0.08);
   }
   .lang-btn {
     font-family: 'DM Sans', sans-serif;
-    font-size: 10px; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
     background: transparent;
     border: none;
-    padding: 4px 10px;
-    border-radius: 16px;
+    padding: 10px 28px;
+    border-radius: 32px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+    color: var(--mid);
     opacity: 0.5;
   }
-  .lang-btn.active {
-    background: var(--gold);
+  .lang-btn.active-en {
+    background: var(--terracotta);
     color: #fff;
     opacity: 1;
+    box-shadow: 0 2px 10px rgba(200,96,58,0.3);
+  }
+  .lang-btn.active-fr {
+    background: var(--green);
+    color: #fff;
+    opacity: 1;
+    box-shadow: 0 2px 10px rgba(74,103,65,0.3);
+  }
+  .lang-divider {
+    width: 1px; height: 20px;
+    background: rgba(44,36,22,0.12);
+    flex-shrink: 0;
   }
 
   .hero {
@@ -313,9 +332,14 @@
     <div class="band-line"></div>
     <span class="band-label">Bordeaux · 22 August 2026</span>
     <div class="band-line"></div>
+  </div>
+
+  <!-- Prominent centered language toggle -->
+  <div class="lang-toggle-wrap">
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn active-en" id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">🇫🇷 Français</button>
     </div>
   </div>
 
@@ -329,7 +353,7 @@
     <div class="names">
       Clément<span class="amp">&</span>Alaknanda's
     </div>
-    <p class="tagline" data-en="wedding party at our home in Bordeaux!" data-fr="la fête de mariage chez nous à Bordeaux !">wedding party at our home in Bordeaux!</p>
+    <p class="tagline" data-en="wedding party at our home in Bordeaux!" data-fr="notre fête de mariage chez nous à Bordeaux !">wedding party at our home in Bordeaux!</p>
 
     <div class="divider-florish">
       <div class="line"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="line"></div>
@@ -337,7 +361,7 @@
 
     <p style="font-size:15px; color:var(--mid); line-height:1.7; max-width:420px; margin:0 auto;"
        data-en="A summer evening in our garden — aperitivo at sunset, a long table of good food, and dancing until late with headphones on. Come as you are, stay as long as you like."
-       data-fr="Une soirée d'été dans notre jardin — apéritif au coucher du soleil, un long repas convivial, et on danse jusqu'au bout avec des casques sur les oreilles. Venez comme vous êtes, restez aussi longtemps que vous voulez.">
+       data-fr="Une soirée d'été dans notre jardin — apéritif au coucher du soleil, un long repas convivial, et on danse jusqu'au bout de la nuit en mode &quot;silent disco&quot; (avec des casques fournis sur place). Venez comme vous êtes, restez aussi longtemps que vous voulez.">
       A summer evening in our garden — aperitivo at sunset, a long table of good food, and dancing until late with headphones on. Come as you are, stay as long as you like.
     </p>
   </div>
@@ -367,8 +391,7 @@
         <span class="prog-time">6pm</span>
         <span class="prog-desc">
           <strong data-en="Arrival & aperitifs" data-fr="Arrivée & apéritifs">Arrival & aperitifs</strong>
-          <span data-en=" — drinks in the garden as the sun goes down" data-fr=" — verres dans le jardin au coucher du soleil"> — drinks in the garden as the sun goes down</span>
-          <span class="note" data-en="Our bartender will be mixing all evening — come thirsty" data-fr="Notre barman sera là toute la soirée — venez avec soif">Our bartender will be mixing all evening — come thirsty</span>
+          <span data-en=" — drinks served in the garden as the sun goes down" data-fr=" — boissons servies dans le jardin au coucher du soleil"> — drinks served in the garden as the sun goes down</span>
         </span>
       </li>
       <li class="prog-item">
@@ -432,14 +455,15 @@
 
 <script>
   function setLang(lang) {
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    const btnEn = document.getElementById('btn-en');
+    const btnFr = document.getElementById('btn-fr');
+
+    btnEn.className = 'lang-btn' + (lang === 'en' ? ' active-en' : '');
+    btnFr.className = 'lang-btn' + (lang === 'fr' ? ' active-fr' : '');
 
     document.querySelectorAll('[data-en]').forEach(el => {
       const val = el.getAttribute('data-' + lang);
-      if (val !== null) {
-        el.innerHTML = val;
-      }
+      if (val !== null) el.innerHTML = val;
     });
 
     document.documentElement.lang = lang;
